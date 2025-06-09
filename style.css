@@ -1,0 +1,39 @@
+/* style.css */
+
+body {
+    /* 背景画像を設定 */
+    /* ★ 'images/background.jpg' の部分は、ご自身で用意した画像へのパスに書き換えてください */
+    background-image: url('images/background.jpg');
+    
+    background-size: cover;          /* 画面全体を覆うように画像を拡大・縮小 */
+    background-position: center;     /* 画像を中央に配置 */
+    background-repeat: no-repeat;    /* 画像の繰り返しをしない */
+    background-attachment: fixed;    /* スクロールしても背景を固定 */
+    background-color: #f0f0f0;       /* 画像が読み込めなかった場合の予備の背景色 */
+}
+
+/* メインコンテンツのコンテナ */
+/* Pico.cssの .container を少し上書きして、背景の上に浮いているように見せる */
+main.container {
+    /* ★背景を「ほぼ不透明な白」にすることで、文字がくっきり見えるようにします */
+    /* 0.98 は 98%不透明という意味。1にすると完全に不透明な白になります。*/
+    background-color: rgba(255, 255, 255, 0.98); 
+    
+    padding: 2rem 3rem; /* 内側の余白を少し多めに */
+    border-radius: 12px; /* 角を少し丸く */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12); /* 影を付けて立体感を出す */
+    margin-top: 5rem; /* 画面の上からの余白を調整 */
+    border: 1px solid rgba(0, 0, 0, 0.05); /* ほんの少し輪郭を付ける */
+}
+
+/* テキストの色を、Pico.cssのデフォルトより少し濃い色に上書き */
+body {
+    color: #212121; /* くっきりさせるために濃いめのグレーに */
+}
+
+/* h1見出しのスタイル調整（任意） */
+h1 {
+    text-align: center; /* 中央揃えに */
+    margin-bottom: 1.5rem; /* 下の余白を調整 */
+    color: #1A237E; /* 例えば濃い藍色に */
+}
