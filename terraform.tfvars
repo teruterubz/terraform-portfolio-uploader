@@ -1,0 +1,3 @@
+# terraform.tfvars の内容例
+upload_bucket_name = "your-name-unique-bucket-20250611" # ← 必ずユニークな名前に変更
+# ... その他の変数 ...
