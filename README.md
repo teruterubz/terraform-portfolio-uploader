@@ -13,25 +13,26 @@ AWSのサーバーレス技術とTerraform (IaC) を活用して構築した、W
 ![サーバーレスファイルアップローダー構成図](images/file_uploader_architecture.png)
 ## シーケンス (Sequence)
 
-このアプリケーションの主要な機能は、以下の流れで実現されています。
 ## 処理フロー (Processing Flow)
 
 このアプリケーションの主要な機能は、以下の流れで実現されています。
 
-### ファイルアップロード処理
-① **サイト表示:** ユーザーがブラウザでS3の静的ウェブサイトにアクセスします。
-② **URLリクエスト:** JavaScriptがAPI Gateway (`POST /generate-presigned-url`) に署名付きURLを要求します。
-③ **Lambda実行 (URL生成):** API Gatewayが「署名付きURL生成Lambda」をトリガーします。
-④ **URL応答:** Lambdaが生成した署名付きURLをブラウザに返します。
-⑤ **ファイル送信:** JavaScriptが署名付きURLを使い、ファイル本体をS3バケットに直接アップロード (PUT) します。
-⑥ **イベント通知:** S3へのファイル作成をトリガーに、「メタデータ保存Lambda」が起動します。
-⑦ **メタデータ保存:** Lambdaがファイル情報をDynamoDBに書き込みます。
+### ファイルアップロード処理フロー
 
-### ファイル一覧表示処理
-⑧ **一覧リクエスト:** JavaScriptがAPI Gateway (`GET /files`) にファイル一覧を要求します。
-⑨ **Lambda実行 (一覧取得):** API Gatewayが「ファイル一覧取得Lambda」をトリガーします。
-⑩ **DBスキャン:** LambdaがDynamoDBのテーブルをスキャンしてファイル情報を取得します。
-⑪ **一覧応答:** Lambdaが取得したファイルリストをブラウザに返します。
+- **① サイト表示:** ユーザーがブラウザでS3の静的ウェブサイトにアクセスします。
+- **② URLリクエスト:** JavaScriptがAPI Gateway (`POST /generate-presigned-url`) に署名付きURLを要求します。
+- **③ Lambda実行 (URL生成):** API Gatewayが「署名付きURL生成Lambda」をトリガーします。
+- **④ URL応答:** Lambdaが生成した署名付きURLをブラウザに返します。
+- **⑤ ファイル送信:** JavaScriptが署名付きURLを使い、ファイル本体をS3バケットに直接アップロード (PUT) します。
+- **⑥ イベント通知:** S3へのファイル作成をトリガーに、「メタデータ保存Lambda」が起動します。
+- **⑦ メタデータ保存:** Lambdaがファイル情報をDynamoDBに書き込みます。
+
+### ファイル一覧表示処理フロー
+
+- **⑧ 一覧リクエスト:** JavaScriptがAPI Gateway (`GET /files`) にファイル一覧を要求します。
+- **⑨ Lambda実行 (一覧取得):** API Gatewayが「ファイル一覧取得Lambda」をトリガーします。
+- **⑩ DBスキャン:** LambdaがDynamoDBのテーブルをスキャンして全ファイル情報を取得します。
+- **⑪ 一覧応答:** Lambdaが取得したファイルリストをブラウザに返します。
 
 ## 使用技術一覧 (Tech Stack)
 
